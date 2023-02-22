@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item Tracker</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Item Tracker</h1>
+  <form>
+    <label for="item-name">Item name:</label>
+    <input type="text" id="item-name" name="item-name"><br><br>
+    <label for="item-price">Item price:</label>
+    <input type="text" id="item-price" name="item-price"><br><br>
+    <button type="button" onclick="addItem()">Add item</button>
+  </form>
+  <div id="total"></div>
+  <script>
+    let items = []; // create an empty array to store items and their prices
+
+function addItem() {
+  let itemName = document.getElementById("item-name").value; // get the item name from the input field
+  let itemPrice = parseFloat(document.getElementById("item-price").value); // get the item price from the input field and convert it to a number
+  items.push({name: itemName, price: itemPrice}); // add the item to the items array
+  document.getElementById("item-name").value = ""; // clear the item name input field
+  document.getElementById("item-price").value = ""; // clear the item price input field
+}
+
+function getTotal() {
+  let total = 0; // initialize the total to 0
+  for (let i = 0; i < items.length; i++) { // loop through each item in the items array
+    total += items[i].price; // add the item price to the total
+  }
+  document.getElementById("total").innerHTML = "Total: $" + total.toFixed(2); // display the total on the page
+}
+
+  </script>
+</body>
+</html>
