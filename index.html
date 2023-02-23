@@ -1,39 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Item Tracker</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>work</title>
 </head>
 <body>
-  <h1>Item Tracker</h1>
-  <form>
-    <label for="item-name">Item name:</label>
-    <input type="text" id="item-name" name="item-name"><br><br>
-    <label for="item-price">Item price:</label>
-    <input type="text" id="item-price" name="item-price"><br><br>
-    <button type="button" onclick="addItem()">Add item</button>
-  </form>
-  <div id="total"></div>
+  <label for="item-select">Choose an item:</label>
+  <select id="item-select" name="item">
+    <option value="option1" data-price="10.99">80 Grit - $10.99</option>
+    <option value="option2" data-price="8.49">120 Grit - $8.49</option>
+    <option value="option3" data-price="5.99">180 Grit - $5.99</option>
+    <option value="option4" data-price="5.99">600 Grit - $5.99</option>
+    <option value="option5" data-price="5.99">1GAL Bondo - $5.99</option>
+    <option value="option6" data-price="5.99">2IN MaskTape - $5.99</option>
+    <option value="option3" data-price="30.00">Labor - $30.00HR</option>
+    
+
+  </select>
+  
+  <label for="quantity-input">Quantity:</label>
+  <input type="number" id="quantity-input" name="quantity" min="1" max="100" value="1">
+  
+  <button id="add-to-cart-button">Add</button>
+  <div class="receipt">
+    
+      <h2 class="unit-number">Unit R#: <input class="input-r" type="text"> </h2>
+      <h2 class="name">Employee Name: <input class="input-r" type="text"> </h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody id="receipt-items"></tbody>
+      <tfoot>
+        <tr>
+          <td class="total" colspan="3">Total price:</td>
+          <td class="total-price" id="total-price">$0.00</td>
+        </tr>
+        <tr>
+          <td class="date" colspan="3" id="receipt-date"></td>
+        </tr>
+        <tr>
+          <td class="signature">Signature:</td>
+        </tr>
+      </tfoot>
+    </table>
+    
+
+  </div>
+  
   <script>
-    let items = []; // create an empty array to store items and their prices
+    // Get references to the select and quantity inputs, the add-to-cart button,
+    // the receipt items tbody element, and the total price element
+    const selectInput = document.getElementById("item-select");
+    const quantityInput = document.getElementById("quantity-input");
+    const addToCartButton = document.getElementById("add-to-cart-button");
+    const receiptItemsElement = document.getElementById("receipt-items");
+    const totalPriceElement = document.getElementById("total-price");
+    
+    // Listen for clicks on the add-to-cart button
+    addToCartButton.addEventListener("click", addToCart);
+    
+    // Add a new row to the receipt items table with the selected item and quantity
+    function addToCart() {
+      const selectedOption = selectInput.options[selectInput.selectedIndex];
+      const price = parseFloat(selectedOption.dataset.price);
+      const quantity = parseFloat(quantityInput.value);
+      const itemTotal = price * quantity;
+      const receiptDateElement = document.getElementById("receipt-date");
+      
+      // Create a new row with the item, quantity, and price
+      const newRow = document.createElement("tr");
+      const itemCell = document.createElement("td");
+      itemCell.innerText = selectedOption.text;
+      newRow.appendChild(itemCell);
+      
+      const quantityCell = document.createElement("td");
+      quantityCell.innerText = quantity;
+      newRow.appendChild(quantityCell);
+      
+      const priceCell = document.createElement("td");
+      priceCell.innerText = "$" + itemTotal.toFixed(2);
+      newRow.appendChild(priceCell);
+      
+      const deleteCell = document.createElement("td");
+      const deleteButton = document.createElement("button");
+      deleteButton.innerText = 'X';
+      deleteButton.addEventListener("click", () => {
+        newRow.remove();
+        const currentTotal = parseFloat(totalPriceElement.innerText.slice(1));
+        const newTotal = currentTotal - itemTotal;
+        totalPriceElement.innerText = "$" + newTotal.toFixed(2);
+      });
+      deleteCell.appendChild(deleteButton);
+      newRow.appendChild(deleteCell);
+      
+      receiptItemsElement.appendChild(newRow);
+      
+      // Update the total price element with the new total
+      const currentTotal = parseFloat(totalPriceElement.innerText.slice(1));
+      const newTotal = currentTotal + itemTotal;
+      totalPriceElement.innerText = "$" + newTotal.toFixed(2);
 
-function addItem() {
-  let itemName = document.getElementById("item-name").value; // get the item name from the input field
-  let itemPrice = parseFloat(document.getElementById("item-price").value); // get the item price from the input field and convert it to a number
-  items.push({name: itemName, price: itemPrice}); // add the item to the items array
-  document.getElementById("item-name").value = ""; // clear the item name input field
-  document.getElementById("item-price").value = ""; // clear the item price input field
-}
-
-function getTotal() {
-  let total = 0; // initialize the total to 0
-  for (let i = 0; i < items.length; i++) { // loop through each item in the items array
-    total += items[i].price; // add the item price to the total
-  }
-  document.getElementById("total").innerHTML = "Total: $" + total.toFixed(2); // display the total on the page
-}
-
+      // Update the receipt date element with the current date and time
+    const now = new Date();
+    const dateString = now.toLocaleDateString();
+    const timeString = now.toLocaleTimeString();
+    receiptDateElement.innerText = "Date: " + dateString + " Time: " + timeString;
+    }
   </script>
+  ``
+  
+  
 </body>
 </html>

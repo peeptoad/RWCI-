@@ -1,0 +1,111 @@
+body {
+    background-color: rgb(5, 109, 121);
+    color: white;
+}
+
+label {
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+}
+
+select {
+    font-size: 20px;
+    height: 25px;
+    border-radius: 4px;
+    background-color: rgba(254, 89, 0, 0.929);
+}
+
+input {
+    font-size: 20px;
+    width: 45px;
+    height: 20px;
+    background-color: rgba(254, 89, 0, 0.929);
+    border-radius: 3px;
+    border: none;
+}
+
+
+
+button  {
+    font-size: 20px;
+    background-color: rgba(254, 0, 0, 0.929);
+    border-radius: 3px;
+    border: none;
+}
+
+.receipt {
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.315);
+    margin-top: 45px;
+    background-color: rgb(236, 236, 236);
+    position: absolute;
+    width: 800px;
+    height: fit-content;
+    color: rgb(0, 0, 0);
+}
+
+.unit-number, .name {
+    position: relative;
+    left: 120px;
+    
+}
+
+.input-r {
+    background-color: rgb(236, 236, 236);
+}
+
+.hr1 {
+    position: relative;
+    
+    border: 1px solid black;
+    top: 40px;
+}
+
+tr {
+    text-align: center;
+}
+
+th{
+    position: relative;
+    
+    
+    padding-left: 30px;
+    padding-right: 30px;
+    left: 142px;
+    font-size: 24px;
+}
+
+td {
+    position: relative;
+    left: 142px;
+    margin-left:10px;
+    font-size: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.total {
+    position: relative;
+    left: 229px;
+    font-weight: bolder;
+    padding-bottom: 45px;
+}
+.total-price {
+    position: relative;
+    padding-bottom: 45px ;
+    font-weight: bolder;
+    left:18px;
+}
+
+.date {
+    font-weight: bolder;
+}
+
+.signature {
+    font-size: 24px;
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    left: 177px;
+    
+}
