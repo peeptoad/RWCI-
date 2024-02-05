@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>work</title>
-</head>
-<body>
+
   <label for="item-select">Choose an item:</label>
   <select id="item-select" name="item">
     <option value="option1" data-price="10.99">80 Grit - $10.99</option>
@@ -153,33 +144,7 @@ greeting()
  
  "Don't watch the clock; do what it does. Keep going... unless it's daylight savings time. Then you can sleep in an extra hour. - Sam Levenson",
  
- "Success is not final, failure is not fatal: It is the courage to continue that counts... unless you're playing Jenga. Then one wrong move and it's all over. - Winston Churchill",
- 
- "You miss 100% of the shots you don't take... but if you take too many shots of tequila, you'll miss 100% of the toilet bowl. - Wayne Gretzky",
- 
- "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle... except for maybe a really big burrito. - Christian D. Larson",
- 
- "The only way to do great work is to love what you do... or get paid a lot of money to do it. - Steve Jobs",
- 
- "Challenges are what make life interesting and overcoming them is what makes life meaningful... unless it's a spider. Then just run away screaming. - Joshua J. Marine",
- 
- "The future belongs to those who believe in the beauty of their dreams... or those who have a time machine. - Eleanor Roosevelt",
- 
- "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful... or you'll just be a really happy unemployed person. - Albert Schweitzer",
- 
- "I have not failed. I've just found 10,000 ways that won't work... kind of like dating until you find 'the one'. - Thomas Edison",
- 
- "Be the change you wish to see in the world... unless the change you wish to see is zombies. Then maybe let's stick with the status quo. - Mahatma Gandhi",
- 
- "The best way to predict the future is to create it... or just make a lot of bets on the Super Bowl. - Abraham Lincoln",
- 
- "What you get by achieving your goals is not as important as what you become by achieving your goals... like a slightly more smug version of yourself. - Zig Ziglar",
- 
- "A person who never made a mistake never tried anything new... but a person who makes too many mistakes ends up with a lot of cats. - Albert Einstein",
- 
- "Twenty years from now you will be more disappointed by the things you didn't do than by the ones you did do... but your bank account will be a lot happier. - Mark Twain",
- 
- "The greatest glory in living lies not in never falling, but in rising every time we fall... unless we fell because we tripped over our own feet, then we should probably just stay down. - Nelson Mandela",
+ "Success is not final, failure is not fatal: It is the courage to continue that counts... unless you're playing Jenga. Then one wrong move . - Nelson Mandela",
  
  "Happiness is not something ready-made. It comes from your own actions... or a really good chocolate cake. - Dalai Lama",
  
