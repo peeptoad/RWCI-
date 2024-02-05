@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thrust Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="thrustChart" width="400" height="400"></canvas>
+
+    <script>
+        // Sample data
+        var data = {
+            labels: ['0', '1', '2', '3', '4', '5'], // time in seconds
+            datasets: [{
+                label: 'Thrust',
+                data: [0, 10, 20, 30, 40, 50], // force in lbs
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        };
+
+        var options = {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left'
+                }
+            }
+        };
+
+        // Get the context of the canvas element
+        var ctx = document.getElementById('thrustChart').getContext('2d');
+
+        // Create the chart
+        var thrustChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+</html>
