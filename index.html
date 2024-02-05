@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Thrust Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <script>
+        var date = prompt("Enter the date:");
+        var propellantType = prompt("Enter the propellant type:");
+        var propellantMassLbs = prompt("Enter the propellant mass (lbs):");
+        var throatDiameter = prompt("Enter the nozzle throat diameter (inches):");
+        var exitDiameter = prompt("Enter the nozzle exit diameter (if available, inches):");
+
+        var propellantMassGrams = propellantMassLbs * 453.592; // Convert lbs to grams
+
+        document.getElementById('date').innerText = date;
+        document.getElementById('propellantType').innerText = propellantType;
+        document.getElementById('propellantMass').innerText = propellantMassGrams.toFixed(2) + " grams";
+        document.getElementById('throatDiameter').innerText = throatDiameter;
+        document.getElementById('exitDiameter').innerText = exitDiameter || "N/A";
+
+        var data = {
+            labels: [],
+            datasets: [{
+                label: 'Thrust',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        };
+
+        var options = {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left'
+                }
+            }
+        };
+
+        var ctx = document.getElementById('thrustChart').getContext('2d');
+        var thrustChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+
+        function addDataPoint() {
+            var weightInput = document.getElementById('weightInput').value;
+            var timeInput = document.getElementById('timeInput').value;
+
+            if (weightInput && timeInput) {
+                data.labels.push(timeInput);
+                data.datasets[0].data.push(parseFloat(weightInput));
+
+                thrustChart.update();
+            }
+        }
+
+        function removeLastDataPoint() {
+            if (data.labels.length > 0) {
+                data.labels.pop();
+                data.datasets[0].data.pop();
+                thrustChart.update();
+            }
+        }
+
+        function calculateMetrics() {
+            // ... (your existing code)
+
+            // Additional parameters
+            var throatArea = (Math.PI * Math.pow(throatDiameter / 2, 2)).toFixed(2);
+            var exitArea = (exitDiameter ? Math.PI * Math.pow(exitDiameter / 2, 2) : "N/A").toFixed(2);
+            var thrustCoefficient = calculateThrustCoefficient(); // You need to implement this function based on your nozzle design
+            var specificImpulse = calculateSpecificImpulse(); // You need to implement this function based on your data
+            var effectiveExhaustVelocity = specificImpulse * 9.81; // Assuming g₀ = 9.81 m/s²
+
+            // Display calculated values
+            document.getElementById('throatArea').innerText = throatArea;
+            document.getElementById('exitArea').innerText = exitArea;
+            document.getElementById('thrustCoefficient').innerText = thrustCoefficient;
+            document.getElementById('specificImpulse').innerText = specificImpulse.toFixed(2);
+            document.getElementById('effectiveExhaustVelocity').innerText = effectiveExhaustVelocity.toFixed(2);
+        }
+
+        // Function to calculate thrust coefficient (replace with actual formula)
+        function calculateThrustCoefficient() {
+            // Implement your thrust coefficient calculation logic
+            return "N/A";
+        }
+
+        // Function to calculate specific impulse (replace with actual formula)
+        function calculateSpecificImpulse() {
+            // Implement your specific impulse calculation logic
+            return "N/A";
+        }
+    </script>
+
+    <div id="header">
+        <h2>Date: <span id="date"></span></h2>
+        <h2>Propellant Type: <span id="propellantType"></span></h2>
+        <h2>Propellant Mass: <span id="propellantMass"></span></h2>
+        <h2>Nozzle Throat Diameter: <span id="throatDiameter"></span> inches</h2>
+        <h2>Nozzle Exit Diameter: <span id="exitDiameter"></span> inches</h2>
+    </div>
+
+    <canvas id="thrustChart" width="400" height="400"></canvas>
+
+    <div>
+        <label for="weightInput">Weight (lbs):</label>
+        <input type="number" id="weightInput" step="0.5" placeholder="Enter weight">
+        
+        <label for="
