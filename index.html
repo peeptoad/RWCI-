@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Thrust Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div>
+        <label for="dateInput">Date:</label>
+        <input type="text" id="dateInput" placeholder="Enter date">
+
+        <label for="propellantTypeInput">Propellant Type:</label>
+        <input type="text" id="propellantTypeInput" placeholder="Enter propellant type">
+
+        <label for="propellantMassInput">Propellant Mass (lbs):</label>
+        <input type="number" id="propellantMassInput" step="0.1" placeholder="Enter propellant mass">
+    </div>
+
+    <canvas id="thrustChart" width="400" height="400"></canvas>
+
+    <div>
+        <label for="weightInput">Weight (lbs):</label>
+        <input type="number" id="weightInput" step="0.5" placeholder="Enter weight">
+        
+        <label for="timeInput">Time (seconds):</label>
+        <input type="number" id="timeInput" step="0.25" placeholder="Enter time">
+
+        <button onclick="addDataPoint()">Add Data Point</button>
+    </div>
+
+    <script>
+        var data = {
+            labels: [],
+            datasets: [{
+                label: 'Thrust',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        };
+
+        var options = {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                },
+                y: {
+                    type: 'linear',
+                    position: 'left'
+                }
+            }
+        };
+
+        var ctx = document.getElementById('thrustChart').getContext('2d');
+        var thrustChart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+
+        function addDataPoint() {
+            var weightInput = document.getElementById('weightInput').value;
+            var timeInput = document.getElementById('timeInput').value;
+
+            if (weightInput && timeInput) {
+                data.labels.push(timeInput);
+                data.datasets[0].data.push(parseFloat(weightInput));
+
+                thrustChart.update();
+            }
+        }
+    </script>
+</body>
+</html>
